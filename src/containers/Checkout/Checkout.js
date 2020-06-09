@@ -17,6 +17,7 @@ class Checkout extends Component {
       // ['bacon', '2']
       ingredients[param[0]] = +param[1]; // '+' turns string into number
     }
+    this.setState({ingredients: ingredients});
   }
 
   checkoutCancelledHandler= () => {
