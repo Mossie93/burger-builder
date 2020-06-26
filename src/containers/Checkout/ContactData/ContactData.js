@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import axios from '../../../axios-orders';
 import classes from './ContactData.module.css';
@@ -98,7 +99,7 @@ class ContactData extends Component {
       formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
     }
     const order = {
-      ingredients: this.state.ingredients,
+      ingredients: this.props.ings,
       price: this.props.price, // this should be calculated on the server
       orderData: formData
     };
@@ -188,4 +189,11 @@ class ContactData extends Component {
   }
 }
 
-export default ContactData;
+const mapStateToProps = state => {
+  return {
+    ings: state.ingredients,
+    price: state.totalPrice
+  };
+}
+
+export default connect(mapStateToProps)(ContactData);
